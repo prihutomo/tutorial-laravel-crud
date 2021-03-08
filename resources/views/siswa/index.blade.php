@@ -28,10 +28,10 @@
                 <td>{{ $item->nama }}</td>
                 <td>{{ $item->tanggal_lahir }}</td>
                 <td>{{ $item->tempat_lahir }}</td>
-                <td>{{ $item->jenis_kelamin }}</td>
+                <td>{{ $item->jenis_kelamin == 'L' ? 'Laki-Laki' : 'Perempuan' }}</td>
                 <td>{{ $item->alamat }}</td>
                 <td>
-                    <a href="#">Edit</a>
+                    <a href="{{ route('siswa.edit', $item->id) }}">Edit</a>
                     <a href="#">Delete</a>
                 </td>
             </tr>
