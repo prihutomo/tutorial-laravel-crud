@@ -32,7 +32,11 @@
                 <td>{{ $item->alamat }}</td>
                 <td>
                     <a href="{{ route('siswa.edit', $item->id) }}">Edit</a>
-                    <a href="#">Delete</a>
+                    <form action="{{ route('siswa.destroy', $item->id)}}" method="post">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit">Delete</button>
+                    </form>
                 </td>
             </tr>
             @endforeach

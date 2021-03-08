@@ -19,6 +19,7 @@ Route::get('siswa/create', [ SiswaController::class, 'create'])->name('siswa.cre
 Route::post('siswa/create', [ SiswaController::class, 'store'])->name('siswa.store');
 Route::get('siswa/{id}/edit', [ SiswaController::class, 'edit'])->name('siswa.edit');
 Route::put('siswa/{id}/edit', [ SiswaController::class, 'update'])->name('siswa.update');
+Route::delete('siswa/{id}', [ SiswaController::class, 'destroy'])->name('siswa.destroy');
 
 Route::get('/', function () {
     return view('welcome');

@@ -50,4 +50,14 @@ class SiswaController extends Controller
 
         return redirect()->route('siswa.index');
     }
+
+    public function destroy($id)
+    {
+        $siswa = Siswa::find($id);
+
+        if($siswa){
+            $siswa->delete();
+            return redirect()->route('siswa.index');
+        }
+    }
 }
