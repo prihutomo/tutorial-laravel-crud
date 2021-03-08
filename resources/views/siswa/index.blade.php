@@ -7,7 +7,9 @@
     <title>Siswa</title>
 </head>
 <body>
-    <h3>Siswa</h3>
+    <h3>Read Siswa</h3>
+    <br>
+    <a href="{{ route('siswa.create') }}">Create Siswa</a>
     <br>
     <table>
         <thead>
