@@ -15,38 +15,57 @@ class SiswaController extends Controller
 
     public function create()
     {
-        return view('siswa.create');
-    }
-
-    public function store()
-    {
-        $siswa = new Siswa;
-        $siswa->nama = request()->input('nama');
-        $siswa->tanggal_lahir = request()->input('tanggal_lahir');
-        $siswa->tempat_lahir = request()->input('tempat_lahir');
-        $siswa->jenis_kelamin = request()->input('jenis_kelamin');
-        $siswa->alamat = request()->input('alamat');
-        $siswa->save();
-
-        return redirect()->route('siswa.index');
+        return $this->form();
     }
 
     public function edit($id)
     {
-        $siswa = Siswa::find($id);
-        //SELECT * FROM siswa WHERE 'id' = $id
-        return view('siswa.edit', compact('siswa'));
+        return $this->form($id);
+    }
+
+    public function show($id)
+    {
+        return $this->form($id);
+    }
+
+    public function form($id = null)
+    {
+        if($id){
+            $siswa = Siswa::find($id);
+            session()->flashInput(array_merge($siswa->toArray(), old()));
+        }else{
+            session()->flashInput(old());
+        }
+
+        return view('siswa.form');
+    }
+
+    public function store()
+    {
+        return $this->save();
     }
 
     public function update($id)
     {
-        $siswa = Siswa::find($id);
-        $siswa->nama = request()->input('nama');
-        $siswa->tanggal_lahir = request()->input('tanggal_lahir');
-        $siswa->tempat_lahir = request()->input('tempat_lahir');
-        $siswa->jenis_kelamin = request()->input('jenis_kelamin');
-        $siswa->alamat = request()->input('alamat');
-        $siswa->save();
+        return $this->save($id);
+    }
+
+
+    public function save($id = null)
+    {
+        $input = [
+            'nama' => request()->input('nama'),
+            'tanggal_lahir' => request()->input('tanggal_lahir'),
+            'tempat_lahir' => request()->input('tempat_lahir'),
+            'jenis_kelamin' => request()->input('jenis_kelamin'),
+            'alamat' => request()->input('alamat'),
+        ];
+
+        if($id) {
+            Siswa::find($id)->update($input);
+        }else{
+            Siswa::create($input);
+        }
 
         return redirect()->route('siswa.index');
     }
