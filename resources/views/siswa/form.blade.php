@@ -9,7 +9,7 @@
 <body>
     <h3>{{ old('id') ? 'Edit' : 'Create' }} Siswa</h3>
     <br>
-    <form action="{{ old('id') ? route('siswa.update', old('id')) : route('siswa.create')  }}" method="post">
+    <form action="{{ old('id') ? route('siswa.update', old('id')) : route('siswa.store')  }}" method="post">
         @csrf
         @method((old('id') ? 'PUT' : 'POST'))
         Nama <br>
